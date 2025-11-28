@@ -1,46 +1,37 @@
-<html lang="fr">
+    <html lang="fr">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblio-Drive - Accueil</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Biblio-Drive - Accueil</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-9"> <!-- Header -->
-                <?php include("./html/header.html"); ?>
-                <form action="" method="get">
-                    <input type="text" name="recherche_auteur" placeholder="Nom de l'auteur : ">
-                    <button type="submit"><img src="./images/loupe.svg" alt="loupe.svg" id="loupe"></button>
-                </form>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-9"> <!-- Header -->
+                    <?php include("./html/header.html"); ?>
+                    <form action="" method="get">
+                        <input type="text" name="recherche_auteur" placeholder="Nom de l'auteur : ">
+                        <button type="submit"><img src="./images/loupe.svg" alt="loupe.svg" id="loupe"></button>
+                    </form>
+                </div>
+                <div class="col-3">LOGO</div> <!-- Logo -->
             </div>
-            <div class="col-3">LOGO</div> <!-- Logo -->
-        </div>
-    
-        <div class="row">
-            <div class="col-9"> <!-- Contenu -->
-                <?php if (isset($_GET['recherche_auteur']) && !empty(trim($_GET['recherche_auteur']))){ require('./php/search.php');} # Au lieu de isset buton pour eviter une url sur charger?>
-            </div> 
+        
+            <div class="row">
+                <div class="col-9"> <!-- Contenu -->
+                    <?php if (isset($_GET['recherche_auteur']) && !empty(trim($_GET['recherche_auteur']))){ require('./php/search.php');} # Au lieu de isset buton pour eviter une url sur charger?>
+                </div> 
 
-            <div class="col-3"> <!-- Login -->
-                <form action="" method="post">
-                    <label for="email">E-Mail :</label><br>
-                    <input type="email" name="email" id="email"><br>
-                    <label for="password">Mot De Passe :</label><br>
-                    <input type="password" name="password" id="password"><br><br>
-                    <button type="submit">Connectez-vous</button>
-                </form>
-                <?php if ((isset($_POST['password']) && !empty(trim($_POST['password'] ))) && (isset($_POST['email']) && !empty(trim($_POST['email'])))){require('./php/search.php');}?>
+                <div class="col-3"> <!-- Login -->
+                    <?php require('./php/login.php'); ?>
+                </div>
             </div>
 
-        </div>
-    </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+    </html>
