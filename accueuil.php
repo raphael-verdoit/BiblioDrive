@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-9"> <!-- Header -->
-                    <?php include("./html/header.html"); ?>
+                    <?php require("./html/header.html"); ?>
                     <form action="" method="get">
                         <input type="text" name="recherche_auteur" placeholder="Nom de l'auteur : ">
                         <button type="submit"><img src="./images/loupe.svg" alt="loupe.svg" id="loupe"></button>
@@ -27,7 +27,19 @@
                 </div> 
 
                 <div class="col-3"> <!-- Login -->
-                    <?php require('./php/login.php'); ?>
+                    <form action="" method="POST">
+                        <div>
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="mdp">Password:</label>
+                            <input type="password" id="pass" name="pass" required>
+                        </div>
+                        <div>
+                            <button type="submit" id="login_submit" name="login_submit">Log In</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
