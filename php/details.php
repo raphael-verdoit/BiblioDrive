@@ -1,22 +1,98 @@
-<h1> WORKING </h1>
 <?php
+    // Connexion à la base de données
     require("db.php");
 
-    $sql = "SELECT
-                livre.nolivre,
-                livre.titre,
-                livre.anneeparution,
-                livre.detail,
-                livre.photo,
-                auteur.nom,
-                auteur.prenom
-            FROM
-                livre
-            INNER JOIN
-                auteur ON livre.noauteur = auteur.noauteur
-            WHERE
-                livre.nolivre LIKE :id_livre";
+    // Récupération de l'identifiant du livre passé en paramètre
+    if (isset($_GET['id_livre'])) {
+        $id_livre = $_GET['id_livre'];
 
-    $id_livre = $_GET['id_livre'];
-    $stmt = $connexion->prepare($sql);
+        // Requête SQL pour obtenir les détails du livre et de son auteur
+        $sql = "SELECT
+                    livre.nolivre,
+                    livre.titre,
+                    livre.anneeparution,
+                    livre.detail,
+                    livre.photo,
+                    livre.isbn13,
+                    auteur.nom,
+                    auteur.prenom
+                FROM
+                    livre
+                INNER JOIN
+                    auteur ON livre.noauteur = auteur.noauteur
+                WHERE
+                    livre.nolivre = :id_livre";
+
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':id_livre', $id_livre);
+        $stmt->execute();
+        
+        $livre = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Si le livre n'est pas trouvé ou l'ID est manquant
+    if (!$livre) {
+        die("Livre introuvable.");
+    }
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails - <?php echo htmlspecialchars($livre['titre']); ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <?php 
+        // Inclusion du header si disponible
+        if(file_exists("../html/header.html")) {
+            include("../html/header.html"); 
+        }
+    ?>
+
+    <div class="container my-5">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="display-4 mb-4"><?php echo htmlspecialchars($livre['titre']); ?></h1>
+                        
+                        <div class="mb-3">
+                            <h5 class="text-muted mb-1">Auteur</h5>
+                            <p class="fs-5"><?php echo htmlspecialchars($livre['prenom'] . " " . $livre['nom']); ?></p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5 class="text-muted mb-1">ISBN</h5>
+                            <p class="font-monospace"><?php echo htmlspecialchars($livre['isbn13']); ?></p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="text-muted mb-1">Résumé</h5>
+                            <p class="text-justify"><?php echo nl2br(htmlspecialchars($livre['detail'])); ?></p>
+                        </div>
+
+                        <div class="mt-auto">
+                            <p class="text-muted small">Paru en : <?php echo htmlspecialchars($livre['anneeparution']); ?></p>
+                            <a href="./accueuil.php" class="btn btn-outline-secondary">
+                                &larr; Retour à la liste
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <img src="../images-couvertures/<?php echo htmlspecialchars($livre['photo']); ?>" 
+                             alt="Couverture de <?php echo htmlspecialchars($livre['titre']); ?>" 
+                             class="img-fluid rounded shadow-sm border">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
