@@ -1,17 +1,13 @@
 <?php
-// 1. Démarrer la session au tout début
-session_start();
-$_SESSION['mel'] = $resultat['mel']; // Adaptez selon votre code existant
-
-// 2. Inclure la connexion à la base de données
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require "db.php";
 
 if (isset($_POST['login_submit'])){
     $email = $_POST['email'];
     $mdp = $_POST['pass'];
 
-    // 3. Préparer la requête (Correction du nom de variable : $sql au lieu de $sql_login)
-    // On récupère aussi nom et prenom pour l'affichage dans le dashboard
     $sql = 'SELECT * FROM utilisateur WHERE mel = ?';
     
     try {
@@ -19,25 +15,36 @@ if (isset($_POST['login_submit'])){
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_OBJ);
 
-        // 4. Vérifier si l'utilisateur existe ET si le mot de passe est bon
         if ($user && $mdp === $user->motdepasse) {
-            // Authentification réussie
-            
-            // 5. Enregistrer les informations en session (requis par dashboard.php)
-            $_SESSION['user_email'] = $user->mel;
+            // Utiliser 'mel' pour correspondre au test du header.php
+            $_SESSION['mel'] = $user->mel; 
             $_SESSION['user_name']  = $user->prenom . ' ' . $user->nom;
 
-            // 6. Redirection vers le tableau de bord
             header('Location: dashboard.php');
             exit();
-
         } else {
-            // Échec de connexion
             echo "Email ou mot de passe incorrect.";
-            // Vous pouvez ajouter un lien de retour : <a href='../accueuil.php'>Retour</a>
         }
     } catch (Exception $e) {
-        echo "Erreur lors de la connexion : " . $e->getMessage();
+        echo "Erreur : " . $e->getMessage();
     }
 }
 ?>
+
+<?php if(isset($_SESSION['mel'])): ?>
+    <p>Utilisateur connecter</p>
+<?php else: ?>
+    <form action="./php/login.php" method="POST">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="mdp">Password:</label>
+            <input type="password" id="pass" name="pass" required>
+        </div>
+        <div>
+            <button type="submit" id="login_submit" name="login_submit">Log In</button>
+        </div>
+    </form>
+<?php endif; ?>

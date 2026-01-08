@@ -1,10 +1,9 @@
 <?php
-// Start the session to access session variables.
+
 session_start();
 
-// Check if the user is logged in by verifying the session variable exists.
-if (!isset($_SESSION['user_email'])) {
-    // If not logged in, redirect to the login page.
+// Vérifier 'mel' au lieu de 'user_email' pour être cohérent
+if (!isset($_SESSION['mel'])) {
     header('Location: login.php');
     exit();
 }
@@ -35,6 +34,7 @@ $user_email = $_SESSION['user_email'];
     <title>Dashboard</title>
 </head>
 <body>
+    <?php require 'header.php'?>
     <h1>Dashboard</h1>
 
     <p>Welcome, <strong><?php echo htmlspecialchars($user_name); ?></strong>!</p>

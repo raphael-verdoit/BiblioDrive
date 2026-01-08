@@ -94,14 +94,14 @@
                         </div>
                         <div class="mt-auto">
                             <p class="text-muted small">Paru en : <?php echo htmlspecialchars($livre['anneeparution']); ?></p>
-                            <a href="./accueuil.php" class="btn btn-outline-secondary">
+                            <a href="../accueuil.php" class="btn btn-outline-secondary">
                                 &larr; Retour
                             </a>
                         </div>
                     </div>
 
                     <div class="col-md-4 text-center">
-                        <img src="./images-couvertures/<?php echo htmlspecialchars($livre['photo']); ?>" 
+                        <img src="../images-couvertures/<?php echo htmlspecialchars($livre['photo']); ?>" 
                              alt="Couverture de <?php echo htmlspecialchars($livre['titre']); ?>" 
                              class="img-fluid rounded shadow-sm border">
                     </div>

@@ -7,7 +7,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
-    <?php session_start();?>
     <body>
         <div class="container-fluid">
             <div class="row">
@@ -34,19 +33,7 @@
                 </div> 
 
             <div class="col-3"> 
-                <form action="./php/login.php" method="POST">
-                    <div>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div>
-                        <label for="mdp">Password:</label>
-                        <input type="password" id="pass" name="pass" required>
-                    </div>
-                    <div>
-                        <button type="submit" id="login_submit" name="login_submit">Log In</button>
-                    </div>
-                </form>
+                <?php require_once('./php/login.php')?>
             </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
