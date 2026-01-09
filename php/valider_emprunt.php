@@ -27,15 +27,12 @@ try {
 
     $connexion->commit();
     
-    // On vide le panier après succès
     unset($_SESSION['panier']);
     
-    // Redirection avec succès (ou vers une page de confirmation)
     echo "<script>alert('Emprunt validé !'); window.location.href='accueuil.php';</script>";
 
 } catch (PDOException $e) {
     $connexion->rollBack();
-    // Gestion simple des erreurs (ex: livre déjà emprunté ce jour)
     die("Erreur lors de l'emprunt : " . $e->getMessage());
 }
 ?>

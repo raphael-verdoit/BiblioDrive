@@ -19,15 +19,10 @@
 
     $stmt = $connexion->prepare($sql);
 
-    // 1. On vérifie d'abord si le paramètre existe pour éviter l'erreur "Undefined array key"
     $terme = isset($_GET["recherche_auteur"]) ? $_GET["recherche_auteur"] : '';
 
-    // 2. On prépare le terme de recherche avec les wildcards
     $recherche_auteur = '%' . $terme . '%';
 
-    // 3. On exécute la requête en passant le paramètre dans un tableau.
-    //    Cette méthode gère automatiquement les paramètres répétés et corrige l'erreur SQLSTATE[HY093].
-    
 
     try {
         $stmt->execute([':recherche_auteur' => $recherche_auteur]);

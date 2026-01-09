@@ -1,17 +1,13 @@
 <?php
-// 1. Démarrage de la session
 session_start();
 
-// 2. Vérification de la connexion
 if (!isset($_SESSION['mel'])) {
-    header('Location: ../accueuil.php'); // Redirection vers l'accueil si non connecté
+    header('Location: ../accueuil.php');
     exit();
 }
 
-// 3. Inclusion de la base de données
 require "db.php";
 
-// 4. Récupération des détails des livres du panier
 $livres_panier = [];
 if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
     // On crée une chaîne de points d'interrogation pour la requête IN (?,?,?)

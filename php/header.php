@@ -1,8 +1,6 @@
 <?php
-// On détecte si le fichier actuel est dans le dossier "php"
 $est_dans_dossier_php = (basename(dirname($_SERVER['PHP_SELF'])) == 'php');
 
-// On définit les préfixes de chemin selon l'emplacement
 $prefixe_php = $est_dans_dossier_php ? "" : "php/";
 $prefixe_racine = $est_dans_dossier_php ? "../" : "./";
 ?>

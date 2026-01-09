@@ -1,15 +1,10 @@
 <?php
-    // 1. Démarrage de la session (OBLIGATOIRE au tout début)
     session_start();
-
-    // Connexion à la base de données
     require("db.php");
 
-    // Récupération de l'identifiant du livre passé en paramètre
     if (isset($_GET['id_livre'])) {
         $id_livre = $_GET['id_livre'];
 
-        // Requête SQL pour obtenir les détails du livre et de son auteur
         $sql = "SELECT
                     livre.nolivre,
                     livre.titre,
@@ -33,7 +28,6 @@
         $livre = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Si le livre n'est pas trouvé ou l'ID est manquant
     if (!$livre) {
         die("Livre introuvable.");
     }

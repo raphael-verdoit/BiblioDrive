@@ -1,21 +1,17 @@
 <?php
-// 1. Inclure la connexion à la base de données
 require_once("db.php");
 
-// 2. Paramètres de pagination
+// Paramètres de pagination
 $limite = 10; // Nombre maximum de livres par page
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 if ($page < 1) $page = 1;
 $offset = ($page - 1) * $limite;
 
 try {
-    // 3. Compter le nombre total de livres pour calculer le nombre de pages
     $total_query = $connexion->query("SELECT COUNT(*) FROM livre");
     $total_livres = $total_query->fetchColumn();
     $total_pages = ceil($total_livres / $limite);
 
-    // 4. Récupérer les livres pour la page actuelle
-    // Note : On utilise des entiers pour LIMIT et OFFSET
     $sql = "SELECT * FROM livre LIMIT :limite OFFSET :offset";
     $stmt = $connexion->prepare($sql);
     $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
