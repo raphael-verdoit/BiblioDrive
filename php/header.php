@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <header>
-    <div class="alert alert-info text-center">
+    <div class="alert text-center">
         La bibliothèque de Moulinsart est fermée au public jusqu'à nouvel ordre. Retirez vos livres via le bibliodrive !
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
