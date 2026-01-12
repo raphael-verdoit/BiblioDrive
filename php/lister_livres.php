@@ -53,7 +53,7 @@ try {
                             <td><?php echo htmlspecialchars($livre->anneeparution); ?></td>
                             <td><?php echo htmlspecialchars($livre->isbn13); ?></td>
                             <td class="text-center">
-                                <a href="../accueuil.php?id_livre=<?php echo $livre->nolivre; ?>" class="btn btn-sm btn-primary">
+                                <a href="./details.php?id_livre=<?php echo $livre->nolivre; ?>" class="btn btn-sm btn-primary">
                                     Détails
                                 </a>
                             </td>

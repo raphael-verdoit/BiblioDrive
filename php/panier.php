@@ -10,7 +10,6 @@ require "db.php";
 
 $livres_panier = [];
 if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
-    // On crée une chaîne de points d'interrogation pour la requête IN (?,?,?)
     $ids = array_keys($_SESSION['panier']);
     $placeholders = implode(',', array_fill(0, count($ids), '?'));
     
@@ -74,7 +73,7 @@ if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
         <div class="d-flex justify-content-between mt-4">
             <a href="../accueuil.php" class="btn btn-secondary">Continuer mes recherches</a>
             <div>
-                <a href="valider_emprunt.php" class="btn btn-success">Confirmer l'emprunt</a>
+                <a href="./valider_emprunt.php" class="btn btn-success">Confirmer l'emprunt</a>
             </div>
         </div>
     <?php endif; ?>

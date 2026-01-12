@@ -42,9 +42,7 @@
 </head>
 <body class="bg-light">
 
-    <?php 
-        require("./header.php"); 
-    ?>
+    <?php require("./header.php"); ?>
 
     <div class="container my-5">
         <div class="card shadow">
