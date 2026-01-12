@@ -1,6 +1,6 @@
 <?php
 require 'db.php';
-
+// DOIT PAS ETRE ACCCESSIBLE
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

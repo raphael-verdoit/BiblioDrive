@@ -14,14 +14,14 @@ $date_jour = date('Y-m-d');
 try {
     $connexion->beginTransaction();
 
-    $sql = "INSERT INTO emprunter (mel, nolivre, dateemprunt) VALUES (:mel, :nolivre, :date)";
+    $sql = "INSERT INTO emprunter (mel, nolivre, dateemprunt) VALUES (:mel, :nolivre, :dateemprunt)";
     $stmt = $connexion->prepare($sql);
 
     foreach ($panier as $id_livre) {
         $stmt->execute([
             ':mel' => $mel,
             ':nolivre' => $id_livre,
-            ':date' => $date_jour
+            ':dateemprunt' => $date_jour
         ]);
     }
 

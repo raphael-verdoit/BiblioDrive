@@ -4,7 +4,6 @@ require_once 'php/db.php';
 
 $erreur = null; 
 
-// --- LOGIQUE DE CONNEXION ---
 if (isset($_POST['login_submit'])){
     $email = $_POST['email'];
     $mdp = $_POST['pass'];
