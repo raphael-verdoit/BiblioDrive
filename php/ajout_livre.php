@@ -1,10 +1,11 @@
 <?php
 require 'db.php';
-// DOIT PAS ETRE ACCCESSIBLE
+
 $message = "";
 
 if(!isset($_SESSION['mel'])){
     header('Location: ../accueuil.php');
+    exit(); 
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

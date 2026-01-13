@@ -17,7 +17,7 @@ try {
     $sql = "INSERT INTO emprunter (mel, nolivre, dateemprunt) VALUES (:mel, :nolivre, :dateemprunt)";
     $stmt = $connexion->prepare($sql);
 
-    foreach ($panier as $id_livre) {
+    foreach (array_keys($panier) as $id_livre) {
         $stmt->execute([
             ':mel' => $mel,
             ':nolivre' => $id_livre,
