@@ -1,6 +1,6 @@
 <?php
 require 'db.php';
-
+require 'header.php';
 $message = "";
 
 if(!isset($_SESSION['mel'])){
