@@ -3,7 +3,7 @@ session_start();
 require("db.php");
 
 if (!isset($_SESSION['mel']) || empty($_SESSION['panier'])) {
-    header("Location: accueuil.php");
+    header("Location: ../accueuil.php");
     exit();
 }
 
@@ -29,7 +29,7 @@ try {
     
     unset($_SESSION['panier']);
     
-    echo "<script>alert('Emprunt validé !'); window.location.href='accueuil.php';</script>";
+    echo "<script>alert('Emprunt validé !'); window.location.href='../accueuil.php';</script>";
 
 } catch (PDOException $e) {
     $connexion->rollBack();
