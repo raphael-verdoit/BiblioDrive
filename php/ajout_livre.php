@@ -3,6 +3,10 @@ require 'db.php';
 // DOIT PAS ETRE ACCCESSIBLE
 $message = "";
 
+if(!isset($_SESSION['mel'])){
+    header('Location: ../accueuil.php');
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $noauteur = $_POST['noauteur'];
     $titre = htmlspecialchars($_POST['titre']);
