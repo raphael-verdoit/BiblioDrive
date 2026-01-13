@@ -27,6 +27,9 @@ if (session_status() === PHP_SESSION_NONE) {
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo $prefixe_php;?>ajout_livre.php">Ajouter un livre</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo $prefixe_php;?>ajout_membre.php">Ajouter un membre</a>
+                        </li>
                     <?php endif; ?>
                 </ul>
 
